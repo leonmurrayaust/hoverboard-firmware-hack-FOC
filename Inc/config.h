@@ -19,7 +19,7 @@
   //#define VARIANT_HOVERCAR    // Variant for HOVERCAR build
   //#define VARIANT_HOVERBOARD  // Variant for HOVERBOARD build
   //#define VARIANT_TRANSPOTTER // Variant for TRANSPOTTER build https://github.com/NiklasFauth/hoverboard-firmware-hack/wiki/Build-Instruction:-TranspOtter https://hackaday.io/project/161891-transpotter-ng
-  #define VARIANT_SKATEBOARD  // Variant for SKATEBOARD build
+  //#define VARIANT_SKATEBOARD  // Variant for SKATEBOARD build
 #endif
 // ########################### END OF VARIANT SELECTION ############################
 
@@ -133,13 +133,13 @@
    Outputs:
     - cmdL and cmdR: normal driving INPUT_MIN to INPUT_MAX
 */
-//#define COM_CTRL        0               // [-] Commutation Control Type
-//#define SIN_CTRL        1               // [-] Sinusoidal Control Type
+#define COM_CTRL        0               // [-] Commutation Control Type
+#define SIN_CTRL        1               // [-] Sinusoidal Control Type
 #define FOC_CTRL        2               // [-] Field Oriented Control (FOC) Type
 
-//#define OPEN_MODE       0               // [-] OPEN mode
-//#define VLT_MODE        1               // [-] VOLTAGE mode
-//#define SPD_MODE        2               // [-] SPEED mode
+#define OPEN_MODE       0               // [-] OPEN mode
+#define VLT_MODE        1               // [-] VOLTAGE mode
+#define SPD_MODE        2               // [-] SPEED mode
 #define TRQ_MODE        3               // [-] TORQUE mode
 
 // Enable/Disable Motor
@@ -283,7 +283,7 @@
  * - turn the potis to maximum position, write value in1 to PRI_INPUT1 MAX and value in2 to PRI_INPUT2 MAX
  * - for middle resting potis: Let the potis in the middle resting position, write value in1 to PRI_INPUT1 MID and value in2 to PRI_INPUT2 MID
 */
-  #define CONTROL_ADC           0         // use ADC as input. Number indicates priority for dual-input. Disable CONTROL_SERIAL_USART2, FEEDBACK_SERIAL_USART2, DEBUG_SERIAL_USART2!
+  //#define CONTROL_ADC                    // use ADC as input. Number indicates priority for dual-input. Disable CONTROL_SERIAL_USART2, FEEDBACK_SERIAL_USART2, DEBUG_SERIAL_USART2!
 
   // #define DUAL_INPUTS                     //  ADC*(Primary) + UART(Auxiliary). Uncomment this to use Dual-inputs
   #define PRI_INPUT1            3, 0, 0, 4095, 0      // TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
@@ -605,14 +605,14 @@
  * right sensor board cable. Connect PB10 to channel 1 and PB11 to channel 2 on receiver.
  * Channel 1: steering, Channel 2: speed.
 */
-  #define FLASH_WRITE_KEY     0x1010    // Flash memory writing key. Change this key to ignore the input calibrations from the flash memory and use the ones in config.h
+  //#define FLASH_WRITE_KEY     0x1010    // Flash memory writing key. Change this key to ignore the input calibrations from the flash memory and use the ones in config.h
   #undef  CTRL_MOD_REQ
   #define CTRL_MOD_REQ        TRQ_MODE  // SKATEBOARD works best in TORQUE Mode
   // #define CONTROL_PWM_LEFT    0         // use RC PWM as input on the LEFT cable. Number indicates priority for dual-input. Disable DEBUG_SERIAL_USART2!
   #define CONTROL_PWM_RIGHT   0         // use RC PWM as input on the RIGHT cable.  Number indicates priority for dual-input. Disable DEBUG_SERIAL_USART3!
 
   #define PRI_INPUT1          0, -1000, 0, 1000,   0    // Disabled. TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
-  #define PRI_INPUT2          2,  -800, 0,  1000, 100    // Active.   TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
+  #define PRI_INPUT2          2,  -800, 0,  700, 100    // Active.   TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
   #define INPUT_BRK           -400      // (-1000 - 0) Change this value to adjust the braking amount
 
   #define FILTER              6553      // 0.1f [-] fixdt(0,16,16) lower value == softer filter [0, 65535] = [0.0 - 1.0].
