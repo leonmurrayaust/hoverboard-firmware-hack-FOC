@@ -612,8 +612,8 @@
   #define CONTROL_PWM_RIGHT   0         // use RC PWM as input on the RIGHT cable.  Number indicates priority for dual-input. Disable DEBUG_SERIAL_USART3!
 
   #define PRI_INPUT1          0, -1000, 0, 1000,   0    // Disabled. TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
-  #define PRI_INPUT2          2,  -800, 0,  700, 100    // Active.   TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
-  #define INPUT_BRK           -400      // (-1000 - 0) Change this value to adjust the braking amount
+  #define PRI_INPUT2          2, -1000, 0, 1000, 120    // Active.   TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
+  #define INPUT_BRK           -700      // (-1000 - 0) Change this value to adjust the braking amount
 
   #define FILTER              6553      // 0.1f [-] fixdt(0,16,16) lower value == softer filter [0, 65535] = [0.0 - 1.0].
   #define SPEED_COEFFICIENT   16384     // 1.0f [-] fixdt(1,16,14) higher value == stronger. [0, 65535] = [-2.0 - 2.0]. In this case 16384 = 1.0 * 2^14
