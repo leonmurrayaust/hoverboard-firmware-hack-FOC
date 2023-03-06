@@ -73,7 +73,7 @@
  * Then you can verify voltage on debug output value 6 (to get calibrated voltage multiplied by 100).
 */
 #define BAT_FILT_COEF           655       // battery voltage filter coefficient in fixed-point. coef_fixedPoint = coef_floatingPoint * 2^16. In this case 655 = 0.01 * 2^16
-#define BAT_CALIB_REAL_VOLTAGE  4140      // input voltage measured by multimeter (multiplied by 100). In this case 43.00 V * 100 = 4300
+#define BAT_CALIB_REAL_VOLTAGE  3890      // input voltage measured by multimeter (multiplied by 100). In this case 43.00 V * 100 = 4300
 #define BAT_CALIB_ADC           1492      // adc-value measured by mainboard (value nr 5 on UART debug output)
 #define BAT_CELLS               10        // battery number of cells. Normal Hoverboard battery: 10s
 #define BAT_LVL2_ENABLE         0         // to beep or not to beep, 1 or 0
@@ -148,26 +148,26 @@
 
 // Control selections
 #define CTRL_TYP_SEL    SIN_CTRL        // [-] Control type selection: COM_CTRL, SIN_CTRL, FOC_CTRL (default)
-#define CTRL_MOD_REQ    SPD_MODE        // [-] Control mode request: OPEN_MODE, VLT_MODE (default), SPD_MODE, TRQ_MODE. Note: SPD_MODE and TRQ_MODE are only available for CTRL_FOC!
+#define CTRL_MOD_REQ    VLT_MODE        // [-] Control mode request: OPEN_MODE, VLT_MODE (default), SPD_MODE, TRQ_MODE. Note: SPD_MODE and TRQ_MODE are only available for CTRL_FOC!
 #define DIAG_ENA        1               // [-] Motor Diagnostics enable flag: 0 = Disabled, 1 = Enabled (default)
 
 // Limitation settings
 #define I_MOT_MAX       15              // [A] Maximum single motor current limit
 #define I_DC_MAX        17              // [A] Maximum stage2 DC Link current limit for Commutation and Sinusoidal types (This is the final current protection. Above this value, current chopping is applied. To avoid this make sure that I_DC_MAX = I_MOT_MAX + 2A)
-#define N_MOT_MAX       400             // [rpm] Maximum motor speed limit
+#define N_MOT_MAX       200             // [rpm] Maximum motor speed limit
 
 // Field Weakening / Phase Advance
 #define FIELD_WEAK_ENA   0               // [-] Field Weakening / Phase Advance enable flag: 0 = Disabled (default), 1 = Enabled
 #define FIELD_WEAK_MAX   0               // [A] Maximum Field Weakening D axis current (only for FOC). Higher current results in higher maximum speed. Up to 10A has been tested using 10" wheels.
-#define PHASE_ADV_MAX    0              // [deg] Maximum Phase Advance angle (only for SIN). Higher angle results in higher maximum speed.
+#define PHASE_ADV_MAX    15              // [deg] Maximum Phase Advance angle (only for SIN). Higher angle results in higher maximum speed.
 #define FIELD_WEAK_HI   1500             // (1000, 1500] Input target High threshold for reaching maximum Field Weakening / Phase Advance. Do NOT set this higher than 1500.
 #define FIELD_WEAK_LO   1000             // ( 500, 1000] Input target Low threshold for starting Field Weakening / Phase Advance. Do NOT set this higher than 1000.
 
 // Extra functionality
 // #define STANDSTILL_HOLD_ENABLE          // [-] Flag to hold the position when standtill is reached. Only available and makes sense for VOLTAGE or TORQUE mode.
 // #define ELECTRIC_BRAKE_ENABLE           // [-] Flag to enable electric brake and replace the motor "freewheel" with a constant braking when the input torque request is 0. Only available and makes sense for TORQUE mode.
-// #define ELECTRIC_BRAKE_MAX    500       // (0, 500) Maximum electric brake to be applied when input torque request is 0 (pedal fully released).
-// #define ELECTRIC_BRAKE_THRES  120       // (0, 500) Threshold below at which the electric brake starts engaging.
+#define ELECTRIC_BRAKE_MAX    500       // (0, 500) Maximum electric brake to be applied when input torque request is 0 (pedal fully released).
+#define ELECTRIC_BRAKE_THRES  120       // (0, 500) Threshold below at which the electric brake starts engaging.
 // ########################### END OF MOTOR CONTROL ########################
 
 
@@ -607,7 +607,7 @@
 */
   #define FLASH_WRITE_KEY     0x1010    // Flash memory writing key. Change this key to ignore the input calibrations from the flash memory and use the ones in config.h
   #undef  CTRL_MOD_REQ
-  #define CTRL_MOD_REQ        SPD_MODE  // SKATEBOARD works best in TORQUE Mode
+  #define CTRL_MOD_REQ        VLT_MODE  // SKATEBOARD works best in TORQUE Mode
   // #define CONTROL_PWM_LEFT    0         // use RC PWM as input on the LEFT cable. Number indicates priority for dual-input. Disable DEBUG_SERIAL_USART2!
   #define CONTROL_PWM_RIGHT   0         // use RC PWM as input on the RIGHT cable.  Number indicates priority for dual-input. Disable DEBUG_SERIAL_USART3!
 
