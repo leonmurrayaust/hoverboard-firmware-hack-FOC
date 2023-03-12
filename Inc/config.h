@@ -624,7 +624,7 @@
   // #define SUPPORT_BUTTONS_RIGHT      // use right sensor board cable for button inputs. Disable DEBUG_SERIAL_USART3!
   // #define STANDSTILL_HOLD_ENABLE     // [-] Flag to hold the position when standtill is reached. Only available and makes sense for VOLTAGE or TORQUE mode.
 
-  // #ifdef CONTROL_PWM_LEFT
+  #ifdef CONTROL_PWM_LEFT
   #define DEBUG_SERIAL_USART2         // left sensor cable debug
   //  #else
   //  #define DEBUG_SERIAL_USART3         // right sensor cable debug
